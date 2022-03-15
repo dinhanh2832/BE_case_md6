@@ -28,7 +28,6 @@ import java.util.Set;
 @Controller
 @PropertySource("classpath:application.properties")
 @CrossOrigin("*")
-//@RequestMapping("/pages")
 public class UserController {
     @Autowired
     private Environment env;
@@ -103,6 +102,7 @@ public class UserController {
 
         return new ResponseEntity<>(profileEnterpriseService.create(us), HttpStatus.CREATED);
     }
+
     //tạo profile người dùng
     @PostMapping("/register/user")
     public ResponseEntity<Boolean> createUser(@RequestBody ProfileUser user, BindingResult bindingResult) {
@@ -138,6 +138,7 @@ public class UserController {
         userService.save(user);
         return new ResponseEntity<>(userService.create(us), HttpStatus.CREATED);
     }
+
     //đăng nhập người dùng
     @PostMapping("/login/user")
     public ResponseEntity<?> login(@RequestBody ProfileUser user) {
@@ -151,6 +152,7 @@ public class UserController {
         ProfileUser currentUser = userService.findByEmail(user.getEmail());
         return ResponseEntity.ok(new JwtResponse(jwt, currentUser.getId(), userDetails.getUsername(), userDetails.getAuthorities()));
     }
+
     //đăng nhập doanh nghiệp
     @PostMapping("/login/enterprise")
     public ResponseEntity<?> login2(@RequestBody ProfileEnterprise user) {
@@ -164,12 +166,14 @@ public class UserController {
         ProfileEnterprise currentUser = profileEnterpriseService.findByEmail(user.getEmail());
         return ResponseEntity.ok(new JwtResponse(jwt, currentUser.getId(), userDetails.getUsername(), userDetails.getAuthorities()));
     }
+
     //tìm người dùng theo id
     @GetMapping("/users/{id}")
     public ResponseEntity<ProfileUser> getProfile(@PathVariable Long id) {
         Optional<ProfileUser> userOptional = this.userService.findById(id);
         return userOptional.map(user -> new ResponseEntity<>(user, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
     // sửa người dùng
     @PutMapping("/users/{id}")
     public ResponseEntity<ProfileUser> updateUserProfile(@PathVariable Long id, @RequestBody ProfileUser user) {
@@ -187,9 +191,10 @@ public class UserController {
         userService.save(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
     //xóa người dùng
     @DeleteMapping("/delete")
-    public ResponseEntity<ProfileUser> delete(Long idU){
+    public ResponseEntity<ProfileUser> delete(Long idU) {
         Optional<ProfileUser> user = this.userService.findById(idU);
         this.userService.delete(user.get());
         return new ResponseEntity<>(HttpStatus.OK);

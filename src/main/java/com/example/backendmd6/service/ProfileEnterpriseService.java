@@ -1,8 +1,6 @@
 package com.example.backendmd6.service;
 
 import com.example.backendmd6.model.ProfileEnterprise;
-
-import com.example.backendmd6.model.Recruitment;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -29,8 +27,9 @@ public interface ProfileEnterpriseService extends UserDetailsService {
 
     void delete(ProfileEnterprise entity);
 
-    Iterable<ProfileEnterprise>findByNameCompanyContaining(String name);
+    Iterable<ProfileEnterprise> findByNameCompanyContaining(String name);
 
     Iterable<ProfileEnterprise> findAllByStatusLikeOne();
+
     Boolean create(ProfileEnterprise profileEnterprise);
 }
