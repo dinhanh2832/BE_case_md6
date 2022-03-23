@@ -1,12 +1,9 @@
 package com.example.backendmd6.service.impl;
 
-import com.example.backendmd6.model.DataMailDTO;
 import com.example.backendmd6.model.ProfileEnterprise;
 import com.example.backendmd6.model.UserPrinciple;
 import com.example.backendmd6.repository.ProfileEnterpriseRepository;
-import com.example.backendmd6.service.MailService;
 import com.example.backendmd6.service.ProfileEnterpriseService;
-import com.example.backendmd6.utils.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.mail.MessagingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -23,9 +19,6 @@ import java.util.Optional;
 public class ProfileEnterpriseServiceImpl implements ProfileEnterpriseService {
     @Autowired
     private ProfileEnterpriseRepository profileEnterpriseRepository;
-
-    @Autowired
-    private MailService mailService;
 
     @Override
     @Transactional
@@ -45,6 +38,7 @@ public class ProfileEnterpriseServiceImpl implements ProfileEnterpriseService {
                 user.getPassword(), enable, accountNonExpired, credentialsNonExpired,
                 accountNonLocked, null);
     }
+
     @Override
     public void save(ProfileEnterprise user) {
         profileEnterpriseRepository.save(user);
@@ -52,7 +46,7 @@ public class ProfileEnterpriseServiceImpl implements ProfileEnterpriseService {
 
     @Override
     public Iterable<ProfileEnterprise> findAll() {
-       return profileEnterpriseRepository.findAll();
+        return profileEnterpriseRepository.findAll();
     }
 
     @Override
@@ -74,10 +68,11 @@ public class ProfileEnterpriseServiceImpl implements ProfileEnterpriseService {
         user = this.findByEmail(email);
         return user;
     }
-        @Override
-        public Optional<ProfileEnterprise> findById (Long id){
-            return profileEnterpriseRepository.findById(id);
-        }
+
+    @Override
+    public Optional<ProfileEnterprise> findById(Long id) {
+        return profileEnterpriseRepository.findById(id);
+    }
 
     @Override
     public UserDetails loadUserById(Long id) {
@@ -94,7 +89,7 @@ public class ProfileEnterpriseServiceImpl implements ProfileEnterpriseService {
         boolean isCorrectUser = false;
         for (ProfileEnterprise currentUser : users) {
             if (currentUser.getEmail().equals(user.getEmail())
-                    && user.getPassword().equals(currentUser.getPassword())&&
+                    && user.getPassword().equals(currentUser.getPassword()) &&
                     currentUser.isEnabled()) {
                 isCorrectUser = true;
             }
@@ -118,7 +113,7 @@ public class ProfileEnterpriseServiceImpl implements ProfileEnterpriseService {
     @Override
     public boolean isCorrectConfirmPassword(ProfileEnterprise user) {
         boolean isCorrentConfirmPassword = false;
-        if(user.getPassword().equals(user.getConfirmPassword())){
+        if (user.getPassword().equals(user.getConfirmPassword())) {
             isCorrentConfirmPassword = true;
         }
         return isCorrentConfirmPassword;
@@ -141,24 +136,11 @@ public class ProfileEnterpriseServiceImpl implements ProfileEnterpriseService {
 
     @Override
     public Boolean create(ProfileEnterprise profileEnterprise) {
-        try {
-            DataMailDTO dataMail = new DataMailDTO();
-
-            dataMail.setTo(profileEnterprise.getEmail());
-            dataMail.setSubject(Const.SEND_MAIL_SUBJECT.CLIENT_REGISTER);
-
-            Map<String, Object> props = new HashMap<>();
-            props.put("name", profileEnterprise.getNameCompany());
-            props.put("username", profileEnterprise.getEmail());
-            props.put("password", profileEnterprise.getPassword());
-            dataMail.setProps(props);
-
-            mailService.sendHtmlMail(dataMail, Const.TEMPLATE_FILE_NAME.CLIENT_REGISTER);
-            return true;
-        } catch (MessagingException exp){
-            exp.printStackTrace();
-        }
-        return false;
+        Map<String, Object> props = new HashMap<>();
+        props.put("name", profileEnterprise.getNameCompany());
+        props.put("username", profileEnterprise.getEmail());
+        props.put("password", profileEnterprise.getPassword());
+        return true;
     }
 
 }
