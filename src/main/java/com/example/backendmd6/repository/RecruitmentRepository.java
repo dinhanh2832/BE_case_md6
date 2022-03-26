@@ -54,7 +54,7 @@ public interface RecruitmentRepository extends JpaRepository<Recruitment, Long> 
             "                              where address like %:address%)\n" +
             "                                 as theoTP\n" +
             "                        where title like %:title%)\n" +
-            "                           as theoNghanh\n" +
+            "                           as theoNganh\n" +
             "                  where experience like %:experience%)\n" +
             "                     as theoKinhNghiem\n" +
             "            where salary between :min and :max) as theoluong) as theo_Recruitment\n" +

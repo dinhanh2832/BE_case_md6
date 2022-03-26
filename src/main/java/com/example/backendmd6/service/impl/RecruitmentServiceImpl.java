@@ -36,11 +36,6 @@ public class RecruitmentServiceImpl implements RecruitmentService {
         return recruitmentRepository.findRecruitment(address,title,experience,min,max,name);
     }
 
-//    @Override
-//    public Iterable<Recruitment> findAllByCityContaining(String title) {
-//        return recruitmentRepository.findAllByAddressContaining(title);
-//    }
-
     @Override
     public Page<Recruitment> search(String key,Pageable pageable) {
         return recruitmentRepository.search(key,pageable);

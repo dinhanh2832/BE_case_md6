@@ -5,8 +5,6 @@ import com.example.backendmd6.security.jwt.JwtAuthenticationFilter;
 import com.example.backendmd6.security.jwt.RestAuthenticationEntryPoint;
 import com.example.backendmd6.service.ProfileEnterpriseService;
 import com.example.backendmd6.service.ProfileUserService;
-import com.example.backendmd6.service.impl.ProfileEnterpriseServiceImpl;
-import com.example.backendmd6.service.impl.ProfileUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
