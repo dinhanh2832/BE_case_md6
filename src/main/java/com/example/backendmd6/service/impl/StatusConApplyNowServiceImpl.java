@@ -28,9 +28,4 @@ public class StatusConApplyNowServiceImpl implements StatusConApplyNowService {
     public void save(StatusConfirmOfApplyNow statusConfirmOfApplyNow) {
         statusConApplyNowRepository.save(statusConfirmOfApplyNow);
     }
-
-    @Override
-    public void remove(Long id) {
-        statusConApplyNowRepository.deleteById(id);
-    }
 }

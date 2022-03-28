@@ -28,8 +28,4 @@ public class StatusProfileEnterpriseImpl implements StatusEnterpriseService {
         statusEnterpriseRepository.save(statusEnterprise);
     }
 
-    @Override
-    public void remove(Long id) {
-
-    }
 }

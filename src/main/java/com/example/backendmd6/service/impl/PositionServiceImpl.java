@@ -27,8 +27,4 @@ public class PositionServiceImpl implements PositionService {
 
     }
 
-    @Override
-    public void remove(Long id) {
-
-    }
 }

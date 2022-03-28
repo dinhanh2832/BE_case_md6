@@ -1,7 +1,10 @@
 package com.example.backendmd6.service;
 
-public interface WorkService {
-    Iterable<com.example.backendmd6.model.Work> findAllByName(String name);
+import com.example.backendmd6.model.Work;
 
-    Iterable<com.example.backendmd6.model.Work> findAll();
+public interface WorkService {
+
+    Iterable<Work> findAllByName(String name);
+
+    Iterable<Work> findAll();
 }

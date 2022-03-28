@@ -28,8 +28,4 @@ public class StatusRecruitmentServiceImpl implements StatusRecruitmentService {
         statusRecruitmentRepository.save(statusRecruitment);
     }
 
-    @Override
-    public void remove(Long id) {
-        statusRecruitmentRepository.deleteById(id);
-    }
 }
