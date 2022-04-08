@@ -25,6 +25,8 @@ public interface ProfileUserService extends UserDetailsService {
     boolean isRegister(ProfileUser user);
 
     boolean isCorrectConfirmPassword(ProfileUser user);
+
     void delete(ProfileUser entity);
+
     Boolean create(ProfileUser profileUser);
 }

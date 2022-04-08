@@ -79,15 +79,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
-                .antMatchers("/api/homes/**","/api/comments/**","/api/homeTimes/**","/api/orders/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-                .antMatchers("/api/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/api/recruitments/**","/api/cvs/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                .antMatchers("/api/admins/**", "/api/profileEnterprises/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/api/recruitments/**").access("hasRole('ROLE_ENTERPRISE')")
 //                .antMatchers(HttpMethod.GET
 //                        ).access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 //                .antMatchers(HttpMethod.DELETE, "/categories",
 //                        "/typeOfQuestions",
 //                        "/questions",
-//                        "/answers",
-//                        "/quizzes",
 //                        "/hello").access("hasRole('ROLE_ADMIN')")
 //                .antMatchers(HttpMethod.PUT, "/users")
 //                .access("hasRole('ROLE_USER')")

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -32,5 +33,6 @@ public class Recruitment {
     @JoinColumn(name = "position_id")
     private Position positionId;
     @ManyToOne
-    @JoinColumn private ProfileEnterprise profileEnterprise ;
+    @JoinColumn
+    private ProfileEnterprise profileEnterprise;
 }

@@ -14,13 +14,13 @@ public class ApplyNow {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "fileCVId")
-    FileCV fileCVId;
+    private FileCV fileCVId;
     @ManyToOne
     @JoinColumn(name = "recruitment_id")
-    Recruitment recruitmentId;
+    private Recruitment recruitmentId;
     @ManyToOne
     @JoinColumn(name = "statusConfirm_id")
-    StatusConfirmOfApplyNow statusConfirmId;
+    private StatusConfirmOfApplyNow statusConfirmId;
 
     public ApplyNow(FileCV fileCVId, Recruitment recruitmentId, StatusConfirmOfApplyNow statusConfirmId) {
         this.fileCVId = fileCVId;
